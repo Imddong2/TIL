@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas의 기본</title>
+        <script>
+            window.onload = function(){
+                //canvas요소 가져오기
+                var canvas = document.getElementById("mycanvas");
+                //canvas에 그림을 그리려면 canvas요소 객체에서 렌더링 컨텍스트라는 객체를 가지고 와야한다.
+                //canvas 요소 객체의 getContext 메서드를 사용해서 가지고 온다.
+                //2차원 컴퓨터 그래픽스는 "2d", 3차원 컴퓨터 그래픽스는 "webgl"
+                var ctx = canvas.getContext("2d");
+                //6_5.4
+                //좌표(10,10)에 너비가 200이고 높이가 150인 사각형 테두리 그리기
+                ctx.strokeRect(10,10,200,150);
+                //좌표(50,40)에 너비가 120이고 높이가 90인 사각형 채우기
+                ctx.fillRect(50,40,120,90);
+                //좌표(90,65)에 너비가 40이고 높이가 40인 사각형 영역을 지우고 투명하게 만들기
+                ctx.clearRect(90,65,40,40);
+            }
+        </script>
+    </head>
+    <body>
+        <canvas id="mycanvas" width="640" height="400"></canvas>
+    </body>
+</html>
