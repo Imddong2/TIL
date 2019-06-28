@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>배열</title>
+    </head>
+    <body>
+        <script>
+            //배열 리터럴로 생성
+            var evens=[2,4,6,8];
+            console.log(evens);
+            var various=[3.14,"pi",true,{x:1,y:2},[2,4,6,8]];
+            console.log(various);
+            console.log(evens.length);
+            console.log(various.length);
+
+            //Array 생성자로 생성하기
+            var evens=new Array(2,4,6,8);
+            console.log(evens);
+            var various=new Array(3.14,"pi",true,{x:1,y:2},[2,4,6,8])
+            console.log(various);
+            console.log(evens[2]);//배열 요소의 참조->6(인덱스가 2인 요소)
+            
+            //배열추가
+            var a=["A","B","C"];
+            a[3]="D";//3번째 인덱스에 D값 추가
+            console.log(a);//->["A","B","C","D"];
+            var a=["A","B","C"];
+            a.push("D");//push 메소드 사용지 요소를 배열 끝에 추가할 수 있다.
+            console.log(a);//->["A","B","C","D"];
+            delete a[1];
+            console.log(a);//->["A",undefined,"C","D"];
+        </script>
+    </body>
+</html>

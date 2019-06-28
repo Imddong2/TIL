@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>생성자</title>
+    </head>
+    <body>
+        <script>
+            //생성자로 객체 생성하기
+           function Card(suit,rank){
+               this.suit=suit;
+               this.rank=rank;
+           }
+           var card=new Card("하트","A");
+           var card2=new Card("클로버","K");
+           var card3=new Card("스페이드","2");
+           console.log(card);
+           // 객체생성, 초기화 작업 병행
+           // 속도를 계산해서 프로퍼티에 추가
+           function Particle(x,y,vx,vy){
+               this.x=x;
+               this.y=y;
+               this.vx=vx;
+               this.vy=vy;
+               this.velocity=Math.sqrt(vx*vx+vy*vy);//속도계산
+           }
+           var p =new Particle(0,0,3,4);
+           console.log(p);
+
+           //메서드를 가진 객체를 생성하는 생성자
+           function Circle(center,radius){
+               this.center=center;
+               this.radius=radius;
+               this.area=function(){
+                   return Math.PI * this.radius * this.radius;
+               };//넓이구하기
+           }
+           var p ={x:0,y:0};//center 객체 리터럴
+           var c=new Circle(p,2.0);//p=center 2.0=radius
+           console.log("넓이="+c.area());
+        </script>
+    </body>
+</html>
