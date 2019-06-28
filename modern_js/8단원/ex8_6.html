@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>클로저 응용</title>
+    </head>
+    <body>
+        <script>
+            //사람 데이터를 저장하는 클로저를 생성하는 함수
+            //여러 개의 내부 상태와 메서드를 가진 클로저
+            //외부함수
+            function Person(name,age){
+                var _name = name;
+                var _age = age;
+                return{
+                    //내부함수
+                    getName: function(){return _name;},
+                    getAge: function(){return _age},
+                    setAge: function(x){_age = x;}
+                };
+            }
+            var person =Person("Tom",18);
+            console.log(person.getName());//->Tom
+            console.log(person.getAge());//->18
+            person.setAge(19);
+            console.log(person.getAge());//->19
+
+            //x번 곱하는 함수를 생성하는 함수
+            function makeMultiplier(x){
+                return function(y){
+                    return x*y;
+                };
+            }
+            var multi2 = makeMultiplier(2);
+            var multi10 = makeMultiplier(10);
+            // multi2,multi10모두 동일한 함수 몸통을 공유하지만 각자 보유한 럭시컬 환경 다름->다른결과
+            console.log(multi2(3));//6
+            console.log(multi10(3));//30
+        </script>
+    </body>
+</html>

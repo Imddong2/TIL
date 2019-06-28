@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>제너레이터</title>
+    </head>
+    <body>
+        <script>
+            /*제너레이터함수의 성질
+            반복 가능한 이터레이터를 값으로 변환한다.
+            작업의 일시 정지와 재시작이 가능하다.*/
+            //제너레이터는 function*문으로 정의한 함수이며 하나 이상의 yield 표현식을 포함
+
+            //m부터 n까지의 정수 값을 순서대로 꺼내는 이터레이터를 생성하는 제너레이터
+            function* createNumbers(from,to){
+                while(from<=to)yield from++;
+            }
+            var iter=createNumbers(10,20);
+            //이터레이터는 반복할 수 있기 떄문에 for/of문으로 반복에서 처리 할 수 있다.
+            for(var v of iter)console.log(v); 
+
+            //피보나치수열 열거하기
+            function* fibonacci(){
+                var fn1 = 0, fn2 = 1;
+                while(true){
+                    var fnew=fn1+fn2;
+                    fn1=fn2;
+                    fn2=fnew;
+                    reset = yield fn1;
+                    if(reset){
+                        fn1=0; fn2=1;
+                    }
+                }
+            }
+            var iter=fibonacci();
+            for(var i=0; i<10; i++){
+                console.log(iter.next().value);
+            }
+            console.log(iter.next().value);
+            console.log(iter.next(true).value);
+            console.log(iter.next().value);
+            console.log(iter.next().value);
+        </script>
+    </body>
+</html>

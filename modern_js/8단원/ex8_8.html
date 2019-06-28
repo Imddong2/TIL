@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>객체로서의 함수</title>
+    </head>
+    <body>
+        <script>
+
+            function sum(x,y){
+                return x+y;
+            }//sum이라고 하는 함수의 객체를 만든 것
+            sum(1,2);//->3
+            //함수 객체 생성
+            var sum2 = new Function('x','y','return x+y');//함수는 변수나 프로퍼티나 배열 요소에 대입할 수 있다
+            sum2(1,2);//->3
+
+            //apply(),call() 선택한 this와 인수를 사용하여 함수를 호출한다.
+            //apply() -> 인수는 배열 객체
+            //call() -> 인수는 쉼표로 구분한 값
+
+            //bind() 선택한 this와 인수를 적용한 새로운 함수를 반환한다.
+            //Function 객체의 bind메서드는 객체 함수를 묶는다.
+            function say(greeting,honorifics){
+                console.log(greeting+""+honorifics+this.name);
+            }
+            var tom ={name:"Tom Sawyer"};
+            var sayToTom = say.bind(tom);
+            sayToTom("Hello","Mr.")//->Hello! Mr.Tom Sawyer
+
+            //함수를 apply를 이용해 호출했을 때 this 값 변경
+            var o ={}
+            var p ={}
+            //if-switch 대체관계
+
+            function func(){
+                switch(this){
+                    case o:
+                        document.write("o<br/>");
+                        break;
+                    case p:
+                        document.write("p<br/>");
+                        break;
+                    case window:
+                        document.write("window<br/>");
+                        break;
+                }
+            }
+            func();//함수로 호출 window로 받음
+            func.apply(o);//apply로 호출할 때 첫번째 인자 o , func함수 실행 되면서 첫번째 인자로 지정한 o가 this의 값이 된다.
+            func.apply(p);//this값 p case p 실행
+        
+        </script>
+    </body>
+</html>

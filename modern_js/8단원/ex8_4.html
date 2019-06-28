@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>재귀함수</title>
+    </head>
+    <body>
+        <script>
+            //재귀함수
+            //n팩토리얼 구하는 함수
+            //함수 리터럴 -> var fact = function f(X){}
+            //익명함수 -> var fact = function(n){tion fact(n){ if(n<=1)return 1; return n*arguments.callee(n-1);} 
+            //arquments.callee 지금 실행 중인 함수 가리킴
+            function fact(n){
+                if(n<=1)return 1;
+                return n*fact(n-1);
+            }
+            fact(5);
+            console.log(fact(5));
+
+            //하노이의 탑
+            //hanoi(n,a,b,c)는 A에 있는 원반 n개를 막대기 B를 경유하여 막대기 C로 이동시키는 방법을 구형한 함수]
+            //a,b,c 값은 A,B,C중 하나이다.
+            function hanoi(n,a,b,c){
+                if(n<1){return;}
+                hanoi(n-1,a,c,b);
+                console.log(n+"번째 원반:"+a+"->"+c);
+                hanoi(n-1,b,a,c);
+            }
+            hanoi(4,"A","B","C");
+        </script>
+    </body>
+</html>

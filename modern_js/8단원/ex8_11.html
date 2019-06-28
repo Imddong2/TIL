@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>이터레이터</title>
+    </head>
+    <body>
+        <script>
+            //이터레이션은 반복 처리라는 뜻, 데이터 안의 요소를 연속적으로 꺼내는 행위를 말함.
+            //Symbol.iterater메서드는 이터레이터를 반환하는 함수
+            function makeIterator(array){
+                var index=0;
+                return{
+                    next:function(){
+                        if(index<array.length){
+                            return{value:array[index++], done:false};
+                        }else{
+                            return{value:undefined,done:true};
+                        }
+                    }
+                };
+            }
+            //inter의 next메서드를 호출할 때마다 객체가 반환
+            //value에는 차례대로 꺼내진 배열 요소의 값 저장
+            //done 프로퍼티에는 요소의 열거가 끝났는지를 뜻하는 논리값 저장
+            var iter = makeIterator(["A","B","C"]);
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+        </script>
+    </body>
+</html>
