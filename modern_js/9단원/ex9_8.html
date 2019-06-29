@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mixin</title>
+    </head>
+    <body>
+        <script>
+            //Mixin->특정 객체에 다른 객체가 가지고 있는 프로퍼티를 붙여 넣어 '뒤섞는'기법
+            
+            //Mixin함수
+            function mixin(target,source){
+                for(var property in source){
+                    if(source.hasOwnProperty(property)){
+                        target[property]=source[property];
+                    }
+                }
+                return target;
+            }
+            //사용 예
+            var obj1={a:1, b:2};
+            var obj2={b:3, c:4};
+            var obj=mixin(obj1,obj2);
+            console.log(obj);//->Object{a:1,b:3,c:4}
+
+
+
+            //좀더 완전한 Mixin 함수
+            function mixin2(target,source){
+                var keys=Object.keys(source);
+                //열거 가능한 모든 프로퍼티 이름 배열로 만듦
+                for(var i=0; i<keys.length; i++){
+                    //각 프로퍼티의 프로퍼티 디스크립터를 구함
+                    var descriptor=Object.getOwnPropertyDescriptor(source,keys[i]);
+                    //타깃 객체에 새로운 프로퍼티를 추가
+                    Object.defineProperty(target,keys[i],descriptor);
+                }
+                return target;
+            }
+
+            var person1={
+                _name:"Tom",
+                get name(){
+                    return this._name;
+                }
+            };
+            var person2={};
+            mixin2(person2,person1);
+            person2.name="Huck";
+            console.log(person2.name);//->Tom, 값이 바뀌지 않음
+            console.log(person2);   
+        </script>
+    </body>
+</html>

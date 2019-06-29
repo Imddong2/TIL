@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>접근자 프로퍼티</title>
+    </head>
+    <body>
+        <script>
+          //객체가 가진 프로퍼티 값을 객체 바깥에서 읽거나 쓸 수 있또록 제공하는 메서드
+          //데이터를 부적절하게 변경하는 것을 막고 특정 데이터를 외부로부터 숨길 수 있다.
+          //읽을 때의 처리->getter함수(get함수), 쓸 때의 처리->setter(set함수)
+
+          var person={
+              _name:"Tom",
+
+              //getter함수
+              get name(){
+                  return this._name;
+              },
+              //setter함수
+              set name(){
+                  var str=value.charAt(0).toUpperCase()+value.substring(1);
+                  this._name=str;
+              }
+          };
+          console.loig(person.name);//Tom
+          person.name="huck"//접근자 프로퍼티에 값을 대입한다
+          console.log(person.name)//huck
+
+          //delete person.name ->접근자 프로퍼티 삭제
+
+
+          //데이터의 캡슐화
+          //실행함수로 클로저를 생성하면 데이터를 객체 외부에서 읽고 쓸 수 없도록 숨기고 접근자 프로퍼티만 읽고 쓰도록 만들 수 있다.
+          var person = (function(){
+              var _name="Tom";
+              return{
+                  get name(){
+                    return _name;
+                  },
+                  set name(value){
+                    var str=value.charAt(0).toUpperCase()+value.substring(1);
+                    _name=str;
+                  }
+              };
+          })();
+          console.log(person.name);
+          person.name="huck";
+          console.log(person.name);
+          
+        </script>
+    </body>
+</html>

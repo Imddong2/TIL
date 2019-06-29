@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>프로퍼티 속성</title>
+    </head>
+    <body>
+        <script>
+         /*프로퍼티 속성 3가지(속성 값 논리값)
+         wirtable
+         enumerable
+         configurable*/
+         //프토퍼티 디스크립터->프로퍼티의 속상값을 뜻하는 객체
+
+         //프로퍼티 디스크립터 가져오기: Object.getOwnPropertyDescriptor
+         var tom ={name:"Tom"};
+         Object.getOwnPropertyDescriptor(tom,"name");//->{value:"Tom", writable:true, enumerable:true,configurable:true}
+
+         //객체의 프로퍼티 설정하기:Object.defineProperty
+         var obj={};
+         Object.defineProperty(obj,"name",{
+             value:"Huck",writable:true,enumerable:false,configurable:true
+         });
+         Object.getOwnPropertyDescriptor(obj,"name");//->{value:"Huck", writable:true, enumerable:false,configurable:true}
+
+         //프로퍼티 쓰기속성 false->프로퍼티 수정 불가
+         var person={name:"Tom"};
+         Object.defineProperty(person,"name",{
+             writable:false,
+         });
+         Object.getOwnPropertyDescriptor(person,"name");
+         person.name="Huck";
+         console.log(person.name);//->Tom
+
+         //프로퍼티 열거속성 false-> for/in문 이용해서 객체의 프로퍼티를 열거해도 나오지 않음
+         var person={
+             name:"Tom",
+             age:17,
+             sayHello:function(){console.log("Hello!"+this.name)}
+         };
+         Object.defineProperty(person,"sayHello",{enumerable:false});
+         for(var p in person) console.log(p);
+
+         //프로퍼티 재정간능속성 false->delete 안됨, 한번 바꾸면 writable뺴고 내부 속성 값 바꿀 수 없다.
+         var person={name:"Tom", age:17,sex:"남"};
+         Object.defineProperty(person,"age",{configurable:false});
+         delete person.age;
+         console.log(person.age);//->17
+
+         //객체의 프로퍼티 속성 여러 개를 한꺼번에 설정하기:Object.defineProperties
+         var person=Object.defineProperties({},{
+             _name:{
+                 value:"Tom",
+                 writable:true,
+                 enumerable:true,
+                 configurable:true
+             },
+             name:{
+                get:function(){return this._name},
+                set:function(value){
+                    var str=value.charAt(0).toUpperCase()+value.substring(1);
+                    this._name=str;
+                    },
+                    enumerable:true,
+                    configurable:true
+                }
+            });
+         Object.getOwnPropertyDescriptor(person,"name");
+        </script>
+    </body>
+</html>

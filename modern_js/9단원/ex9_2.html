@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>상속</title>
+    </head>
+    <body>
+        <script>
+            /*생성자사용
+            function Person(name){
+                this.name = name;
+                this.inroduce=function(){
+                    return 'My name is'+this.name;
+                }
+            }
+            var pl = new Person('engoing');
+            document.write(pl.introduce()+"<br/>");
+          */
+          //상속의 사용 
+          //prototype프로퍼티 이용
+            function Person(name){
+                this.name = name;
+            }
+            Person.prototype.name=null;
+            Person.prototype.introduce = function(){
+                return 'My name is'+this.name;
+            }
+            function Programmer(name){
+                this.name=name;
+            }
+            Programmer.prototype=new Person();
+
+
+
+            //기능의 추가
+            Programmer.prototype.coding=function(){
+                return "hello world"
+            }
+            function Designer(name){
+                this.name=name;
+            }
+            Designer.prototype=new Person();
+            Designer.prototype.design = function(){
+                return "beautiful";
+            }
+            //프로그래머 객체 만들기 
+            /*p1 프로토타입이라고 하는 생성자의 프로퍼티에 들어있는 객체와 같은데 
+            그 객체는 person이라는 생성자로 만든 객체 이기 떄문에 그 객체가 가지고 있는 introduce라는 메소드도 가지고 있다.*/
+            var pl = new Programmer('engoing');
+
+            //p1에(프로그래머) introduce메소드 없음
+            //근데 사용할수 있는 것은 programmer가 person을 상속받았기 때문 (line:33)
+            document.write(pl.introduce()+"<br/>"); //->My name is egoing  
+            document.write(p1.coding()+"<br/>");//->hello world
+
+            var p2 = new Designer('leezche');
+            document.write(p2.introduce()+"<br/>");//->My name is leezche
+            document.write(p2.design()+"<br/>");//beautiful
+
+
+
+            //prototype
+            //함수는 객체이기 떄문에 프로퍼티를 가질 수 있다.프로토타입이라는 특수한 프로퍼티에 객체를 저장할 수 있다. 
+            //prototype chain
+            function Ultra(){}
+            Ultra.prototype.ultraProp=true;
+
+            function Super(){}
+            Super.prototype = new Ultra();
+
+            function Sub(){}
+            Sub.prototype = new Super();
+
+            //new-> 생성자를 통해 객체 생성하면 생성자 함수의 프로토타입 프로퍼티에 저장되어있는 객체를 꺼내서 리턴할 수 있게 해줌
+            var o = new Sub();
+            console.log(o.ultraProp);//true
+
+
+
+            //object로 객체 생성하기
+            //object.prototype은 모든 객체의 원형
+            var person1={
+                name:"Tom",sayHello:function(){console.log("hello!"+this.name);}
+            };
+            var person2=Object.create(person1);
+            person2.name="Huck";
+            person2.sayHello();//->hello! Huck
+        </script>
+    </body>
+</html>
