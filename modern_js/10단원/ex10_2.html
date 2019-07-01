@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>다차원 배열</title>
+    </head>
+    <body>
+        <script>
+           //2차원 배열을 생성
+           var x=new Array(3);
+           for(var i=0; i<3; i++){
+               x[i]=new Array(3);
+           }
+           //2차원 배열에 값을 대입
+           for(var count=1, i=0; i<3; i++){
+               for(var j=0; j<3; j++){
+                   x[i][j]=count++;
+               }
+           }
+        console.log(x);
+        //3차원 배열을 생성
+        var a= new Array(3);
+        for(var i=0; i<3; i++){
+            a[i]=new Array(3);
+            for(var j=0; j<3; j++){
+                a[i][j]=new Array(3);
+            }
+        }
+        //3차원 배열에 값을 대입 
+        for(var count=1, i=0; i<3; i++){
+            for(var j=0; j<3; j++){
+                a[i][j]=count++;
+            }
+        }
+        console.log(a);
+        </script>
+    </body>
+</html>
