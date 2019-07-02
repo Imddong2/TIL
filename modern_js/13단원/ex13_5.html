@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>창제어</title>
+    </head>
+    <body>
+        <script>
+            window.onload=function(){
+                var w;
+                //newpage.html-->자식창 
+                //open버튼 누르면 자식창 열림
+                document.getElementById("open").onclick=function(){
+                    w=open("newpage.html","new page","width=400","height=300");
+                };
+                //close버튼 누르면 자식창 닫힘
+                document.getElementById("close").onclick=function(){
+                    if(w)w.close();
+                };
+            };
+        </script>
+        <p>
+            <input type="button" value="open" id="open">
+            <input type="button" value="close" id="close">
+        </p>
+    </body>
+</html>

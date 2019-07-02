@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>전역객체</title>
+    </head>
+    <body>
+        <script>
+            //window 객체
+            //모든객체의 전역 객체
+            //둘다 같은 의미
+            //window 생략가능
+            alert('Hello world');
+            window.alert('Hello world');
+            console.log(alert);
+            console.log(window.alert);
+            a=1;
+            console.log(a);
+            console.log(window.a);
+            b={id:1};
+            console.log(b);
+            console.log(window.b);
+        </script>
+    </body>
+</html>

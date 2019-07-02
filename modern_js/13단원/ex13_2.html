@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Location객체</title>
+    </head>
+    <body>
+        <script>
+            //Location객체-->문서의 주소와 관련된 객체 window객체의 프로퍼티
+            //윈도우의 문서 url을 변경할 수 있고, 문서의 위치와 관련해서 다양한 정보를 얻을 수 있다.
+
+            //현재 윈도우의 url알아내기
+            console.log(location.toString(),location.href);
+            console.log(location);
+
+            //url Parsing
+            //protocol-->프로토콜
+            console.log(location.protocol);//->http:
+            //host-->호스트이름:포트번호
+            console.log(location.host);//->127.0.0.1:5500
+            //port-->포트번호
+            console.log(location.port);//->5500
+            //pathname-->웹 사이트의 루트를 기준으로 한 상대 경로
+            console.log(location.pathname);//->/ex13_2.html
+            //search-->질의 문자열
+
+
+
+        
+
+        </script>
+    </body>
+</html>
