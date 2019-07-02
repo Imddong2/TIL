@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>노드 객체 가져오기</title>
+    </head>
+    <body>
+        <div id="first">첫 번째 div</div>
+        <div id="second">두 번째 div</div>
+        <div id="third">세 번째 div</div>
+        <p></p>
+
+        <div class="cat black">봄베이</div>
+        <div class="cat white">페르시안</div>
+        <div class="dog white">스피츠</div>
+        <p></p>
+        
+        <form>
+            <input type="checkbox" name="dog" value="pome">포메리안<br>
+            <input type="checkbox" name="dog" value="dalma">달마시안<br>
+            <input type="checkbox" name="dog" value="bool">불독<br>
+        </form>
+        
+        
+        <script>
+            //id 속성으로 노드 가져오기
+            var element = document.getElementById("second");
+            element.innerHTML="ID로 수정함";
+
+            //요소의 이름으로 노드 가져오기
+            var elements = document.getElementsByTagName("div");
+            elements[2].innerHTML="요소로 수정함"
+
+            //class 속성 값으로 노드 가져오기
+            var cats=document.getElementsByClassName("cat");
+            for(var i=0; i<cats.length; i++){
+                console.log(i+" 번째 고양이: "+cats[i].innerHTML);
+            }
+
+            //name 속성 값으로 노드 가져오기
+            var dogs = document.getElementsByName("dog");
+            dogs[1].value="corgi";
+            dogs[1].nextSibling.nodeValue="웰시코기";
+            for(var i=0; i<dogs.length; i++){
+                console.log(i+" 번째의 값: "+dogs[i].value);
+            }
+
+
+        </script>
+        
+    </body>
+</html>

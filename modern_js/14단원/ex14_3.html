@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>노드 객체 가져오기</title>
+    </head>
+    <body>
+        <a id="naver" href="http://naver.com">네이버</a>
+        <form id="favorite">
+            <input type="checkbox" name="dog" value="pome">포메리안<br>
+            <input type="checkbox" name="dog" value="dalma">달마시안<br>
+            <input type="checkbox" name="dog" value="bool">불독<br>
+        </form>
+        <script>
+            //요소 객체의 프로퍼티로 요소의 속성을 읽고 쓰기
+            var anchor=document.getElementById("naver");
+            console.log(anchor.href);
+            
+            //속성 값 가져오기
+            var result=[];
+            var fm = document.getElementById("favorite");
+            var list = fm.children;
+            for(var i=0; i<list.length; i++){
+                if(list[i].nodeName=="INPUT"&&list[i].type=="checkbox"){
+                    result.push(list[i].getAttribute("value"));
+                }
+            }
+            console.log(result.join(","));//-->pome,dalma,bool
+
+
+            //속성 값 설정하기
+            anchor.setAttribute("href","http://naver.com/");
+            console.log(anchor);
+
+            //속성이 있는지 확인하기
+            var has=anchor.hasAttribute("href");
+            var nhas=anchor.hasAttribute("value");
+            console.log(has);
+            console.log(nhas);
+
+            //속성 삭제하기--> 요소객체.removeAttribute(속성이름)
+
+            //전체 속성의 목록 가져오기
+        </script>     
+    </body>
+</html>

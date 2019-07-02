@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>노드 생성/삽입/삭제하기</title>
+    </head>
+    <body>
+        <ul id="doglist">
+            <li>포메라니안</li>
+            <li>달마시안</li>
+        </ul>
+
+        <ul id="catlist">
+            <li>봄베이</li>
+            <li>페르시안</li>
+        </ul>
+        <script>
+            //노드 생성하기
+            //createElement메서드 사용
+            var headline=document.createElement("h1");
+            console.log(headline.nodeName);//->h1
+            console.log(headline.nodeType);//->1
+
+            //노드 삽입하기
+            var doglist=document.getElementById("doglist");
+            var element=document.createElement("li");//li 요소 객체를 생성한다
+            var text=document.createTextNode("불독");//텍스트 노드를 생성한다.
+            doglist.appendChild(element);//ul요소에 element를 삽입한다.
+            element.appendChild(text);//element에 텍스트 노드를 삽입한다.
+
+            //지정한 노드의 바로 앞에 삽입하기:insertBefore메서드
+            var catlist=document.getElementById("catlist");
+            var element2=document.createElement("li");
+            var text2=document.createTextNode("먼치킨");
+            catlist.insertBefore(element2,catlist.children[1]);
+            //두 번째 자식 요소의 바로 앞에 삽입
+            element2.appendChild(text2);
+
+            //노드 옮기기
+            doglist.appendChild(doglist.children[0]);
+        </script>     
+    </body>
+</html>
