@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>비동기처리</title>
+    </head>
+    <body>
+        <script>
+             //Promise로 비동기 처리 연결하기
+            function buyAsync(mymoney){
+                //var promise=new Promise(function(resolve,reject){...})
+                //resolve-->함수 안의 처리가 끝났을 떄 호출해야 하는 콜백함수
+                //reject-->함수 안의 처리가 실패했을 때 호출해야 하는 콜백함수 
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        var payment=parseInt(prompt("지불하고자 하는 금액을 입력하십시오"));
+                        var balance=mymoney-payment;
+                        if(balance>0){
+                            console.log(payment+'원을 지불했습니다.');
+                            resolve(balance);
+                        }else{
+                            reject('잔액은'+ mymoney+"원 입니다. 구매할 수 없습니다");
+                        }
+                    },1000);
+                });
+            }
+            //then메서드 안에서 실행하는 성공 콜백 함수가 Promise객체 반환
+            buyAsync(500)
+            .then(function(balance){
+                console.log('잔액은'+ balance+'원 입니다.');
+                return buyAsync(balance);
+            })
+            .then(function(balance){
+                console.log('잔액은'+ balance+'원 입니다.');
+                return buyAsync(balance);
+            })
+            .then(function(balance){
+                console.log('잔액은'+ balance+'원 입니다.');
+                return buyAsync(balance);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+
+            //비동기 처리 여러 개를 병렬로 실행하기 Promise.all메서드
+            //가장 먼저 종료한 Promise객체의 결과만 다음 작업으로 보냄
+           
+        
+        </script>
+       <div id="box">click me</div>
+    </body>
+</html>

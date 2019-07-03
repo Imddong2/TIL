@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>이벤트 리스너 등록하고 삭제</title>
+    </head>
+    <body>
+        <script>
+            //addEventListener 메서드로 이벤트 리스너 등록
+
+            /*target.addEventListener(type,listener,useCapture);
+             target-->이벤트리스너를 등록할 DOM노드
+             type-->이벤트 유형을 뜻하는 문자열("click","mouseup" 등)
+             listener-->이벤트가 발생했을 때 처리를 담당하는 콜백 함수의 참조
+             useCapture-->이벤트 단계*/
+
+             window.onload=function(){
+                 var element=document.getElementById("box");
+                 element.addEventListener("click",changeColor,false);
+                 
+                  //removeEventListener 메소드로 이벤트 리스너 삭제하기
+                 var element = document.getElementById("button");
+                 element.addEventListener("click",function(){
+                     console.log("hello!");
+                     //removeEventListener없으면 hello계속 log에 찍힘
+                     element.removeEventListener("click",arguments.callee,false);
+                 },false);
+             };
+             function changeColor(e){
+                 e.currentTarget.style.backgroundColor="red";
+             }
+             /*addEventListener의 장점
+             1. 같은 요소의 같은 이벤트에 이벤트 리스너를 여러 개 등록할 수 있다.
+             2. 버블링 단계,캡처링 단계 둘다 활용 가능
+             3. removeEventListener,stopPropagation,preventDefault를 활용하여 이벤트 전파를 정밀하게 제어할 수 있다.
+             4. HTML요소를 포함한 모든 DOM노드에 이벤트 리스너를 등록할 수 있다.*/
+        </script>
+        <div id="box">click me</div> 
+        <button id="button">버튼</button>    
+    </body>
+</html>
