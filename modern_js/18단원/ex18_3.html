@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>클래스 구문</title>
+    </head>
+    <body>
+      <script>
+          //생성자를 정의하는 새로운 문법 
+          //다양한 종류의 생성자 정의문과 생성자 상속 방법을 통일된 문법으로 간결하게 표현
+          
+          class Circle{//클래스 몸통
+              constructor(center,radius){
+                  this.center=center;
+                  this.radius=radius;
+              }//클래스 멤버(constructor 메서드)->생성자로 객체를 생성할 때 초기화 처리를 담당하는 메서드
+              //prototype 메서드
+              area(){
+                  return Math.PI*this.radius*this.radius;
+              }//클래스 멤버
+              toString(){
+                  return "Circle"
+                  +"중심점("+this.center.x+","+this.center.y+"),반지름="+this.radius;
+              }
+          }
+          //상속으로 클래스 확장
+          class Ball extends Circle{
+              move(dx,dy){
+                  this.center.x+=dx;
+                  this.center.y+=dy;
+              }
+          }
+          var ball =new Ball({x:0,y:0},2);
+          console.log(ball.toString());
+          console.log(ball.area());
+          ball.move(1,2);
+          console.log(ball.toString());
+       
+      </script>
+    </body>
+</html>
