@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>간단한 Ajax 예제</title>
+    </head>
+    <body>
+      <script>
+          window.onload=function(){
+              //1.XMLHttpRequest 객체를 생성한다
+              var req=new XMLHttpRequest();
+              //2.서버와 통신할 떄 사용할 처리 방법을 등록한다
+              //onreadystatechange-->readyState값이 바뀔 떄 마다 호출되는 이벤트 처리기
+              req.onreadystatechange=function(){
+                  //readyState-->통신상태
+                  /*
+                  0:초기화되지 않음-->open메서드 호출x 
+                  1:로드 중-->open메서드는 호출되었지만 send메서드 호출x
+                  2:로드 완료-->send메서드는 호출되었지만 응답이 되돌아오지x
+                  3:응답 수신 중-->응답 행과 응답 헤더는 가져왔찌만 메시지 본문을 가져오지x
+                  4:수신 완료-->모든 응답 메시지를 수신
+                  */
+                  if(req.readyState==4){
+                      if(req.status==200){
+                          document.getElementById("view").innerHTML=req.responseText;
+                      }
+                  }
+              };
+              //3.요청을 전송하고 통신을 시작한다
+              req.open("GET","data.txt");
+              req.send(null);//통신시작
+          }
+      </script>
+      <p id="view"></p>
+    </body>
+</html>
