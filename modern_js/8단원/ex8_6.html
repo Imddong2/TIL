@@ -20,10 +20,15 @@
                 };
             }
             var person =Person("Tom",18);
+            var person2 =Person("Jin",22);
             console.log(person.getName());//->Tom
             console.log(person.getAge());//->18
+            console.log(person2.getName());//->Jin
+            console.log(person2.getAge());//->22
             person.setAge(19);
+            //closure은 javascript가 private한 변수를 사용할 수 있도록함.
             console.log(person.getAge());//->19
+            console.log(person2.getAge());//->22
 
             //x번 곱하는 함수를 생성하는 함수
             function makeMultiplier(x){
