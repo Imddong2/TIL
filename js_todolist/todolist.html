@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>  
+</head>
+<body class="bg-primary">
+    <h1>TODOLIST</h1>
+        <div>
+            <input type="text" id="todo-input" placeholder="할 일을 입력해주세요" />
+            <button id="add-button">add</button>
+        </div>
+        <div class="todo-list">
+            <ui id="todos"></ui>
+        </div>
+</body>
+
+<script>
+    window.onload = () => {
+    //이벤트를 적용할 엘리먼트 선택
+    const checkInput = document.querySelector('#todo-input');
+    const addBtn = document.querySelector('#add-button');
+    const todos = document.querySelector('#todos');
+    // todo 데이터 저장 변수
+    let inputValue;
+    let todoListData = [];
+    // 인풋값 받아오기
+    checkInput.addEventListener("keyup", function(event) {
+            inputValue = this.value;
+    });
+
+    //인풋값 데이터에 등록하기
+    addBtn.onclick = function() {
+        if (inputValue == undefined || inputValue == "") {
+            alert("데이터를 입력해 주세요!");
+        } else {
+            todoListData.push(inputValue);
+            checkInput.value = "";
+            inputValue = undefined;
+            createTodo(todos, todoListData);
+            let todo = document.querySelectorAll('.todo');
+            todoClickEvent(todo, todoListData);
+        }
+    }
+};
+
+//todo 리스트 생성하는 함수
+function createTodo(target, data) {
+    let targetChild = document.querySelectorAll('.todo');
+    for (let child of targetChild) {
+        target.removeChild(child);
+    }
+    for (let i = 0; i < data.length; i++) {
+        let template = `<pr class="todo">
+        <input type="checkbox">
+        <b>${data[i]}</b>
+        <button class="delete">Delete</button>
+        <br>`;
+        target.innerHTML += template;
+    }
+}
+
+
+function todoClickEvent(target, data) {
+    for (let i = 0; i < target.length; i++) {
+        //글자색 바꾸기
+        target[i].childNodes[1].addEventListener('click', function() {
+            if (this.parentNode.classList.value.indexOf("checked") >= 0) {
+                this.parentNode.classList.remove("checked");
+                this.parentNode.style.color = "#000";
+            } else {
+                this.parentNode.classList.add("checked");
+                this.parentNode.style.color = "blue";
+            }
+        });
+        //삭제
+        target[i].childNodes[5].addEventListener('click', function() {
+            if (this.parentNode.classList.value.indexOf("checked") >= 0) {
+                this.parentNode.remove();
+                data.splice(i, 1);
+                target = document.querySelectorAll('.todo');
+            }
+        });
+    }
+};
+</script>
+</html>
