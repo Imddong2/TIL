@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Todolist</title>  
 </head>
-<body class="bg-primary">
+<body>
     <h1>TODOLIST</h1>
         <div>
             <input type="text" id="todo-input" placeholder="할 일을 입력해주세요" />
@@ -19,26 +19,29 @@
 <script>
     window.onload = () => {
     //이벤트를 적용할 엘리먼트 선택
-    const checkInput = document.querySelector('#todo-input');
+    const todoInput = document.querySelector('#todo-input');
     const addBtn = document.querySelector('#add-button');
     const todos = document.querySelector('#todos');
     // todo 데이터 저장 변수
     let inputValue;
     let todoListData = [];
-    // 인풋값 받아오기
-    checkInput.addEventListener("keyup", function(event) {
+    // input값 받아오기
+    todoInput.addEventListener("keyup", function(event) {
             inputValue = this.value;
     });
 
-    //인풋값 데이터에 등록하기
+    //데이터에 등록하기
     addBtn.onclick = function() {
+        //input값이 없으면
         if (inputValue == undefined || inputValue == "") {
             alert("데이터를 입력해 주세요!");
         } else {
+            //todo리스트에 input값 넣기
             todoListData.push(inputValue);
-            checkInput.value = "";
-            inputValue = undefined;
+            todoInput.value = ""; 
+            inputValue = undefined; 
             createTodo(todos, todoListData);
+            //todo가 들어간 모든 요소를 가져옴
             let todo = document.querySelectorAll('.todo');
             todoClickEvent(todo, todoListData);
         }
@@ -52,12 +55,12 @@ function createTodo(target, data) {
         target.removeChild(child);
     }
     for (let i = 0; i < data.length; i++) {
-        let template = `<pr class="todo">
+        let create = `<pr class="todo">
         <input type="checkbox">
         <b>${data[i]}</b>
         <button class="delete">Delete</button>
         <br>`;
-        target.innerHTML += template;
+       target.innerHTML += create;
     }
 }
 
@@ -79,7 +82,6 @@ function todoClickEvent(target, data) {
             if (this.parentNode.classList.value.indexOf("checked") >= 0) {
                 this.parentNode.remove();
                 data.splice(i, 1);
-                target = document.querySelectorAll('.todo');
             }
         });
     }
