@@ -18,10 +18,10 @@
 
 <script>
     window.onload = () => {
-    //이벤트를 적용할 엘리먼트 선택
-    const todoInput = document.querySelector('#todo-input');
-    const addBtn = document.querySelector('#add-button');
-    const todos = document.querySelector('#todos');
+    //이벤트를 적용할 요소 선택
+    const todoInput = document.getElementById('todo-input');
+    const addBtn = document.getElementById('add-button');
+    const todos = document.getElementById('todos');
     // todo 데이터 저장 변수
     let inputValue;
     let todoListData = [];
@@ -68,6 +68,7 @@ function createTodo(target, data) {
 function todoClickEvent(target, data) {
     for (let i = 0; i < target.length; i++) {
         //글자색 바꾸기
+        //check박스를 클릭
         target[i].childNodes[1].addEventListener('click', function() {
             if (this.parentNode.classList.value.indexOf("checked") >= 0) {
                 this.parentNode.classList.remove("checked");
@@ -81,6 +82,7 @@ function todoClickEvent(target, data) {
         target[i].childNodes[5].addEventListener('click', function() {
             if (this.parentNode.classList.value.indexOf("checked") >= 0) {
                 this.parentNode.remove();
+                //i번 배열부터 1개 제거
                 data.splice(i, 1);
             }
         });
