@@ -84,6 +84,7 @@ function todoClickEvent(target, data) {
                 this.parentNode.remove();
                 //i번 배열부터 1개 제거
                 data.splice(i, 1);
+                target = document.querySelectorAll('.todo');
             }
         });
     }
